@@ -793,6 +793,7 @@
 					$('#save').click(function(e){
 
 						var form_data = serialize();
+						var $this = this;
 
 						$.ajax({
 							
@@ -800,10 +801,8 @@
 							url: settings.save_url,
 							data: {formData: form_data},
 							
-							success: function () { 
-								
-								settings.onSaveForm.call();
-
+							success: function (data) { 
+								settings.onSaveForm.call($this, data);
 							}
 
 						});
